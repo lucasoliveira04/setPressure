@@ -1,0 +1,24 @@
+@media (max-width: 768px) {
+    .container-home {
+        flex-direction: column;
+        gap: 15px; 
+    }
+
+    .container-card {
+        width: 180px; 
+    }
+
+    .container-card h5 {
+        font-size: 24px; 
+    }
+}
+
+@media (max-width: 480px) {
+    .container-card {
+        width: 150px; 
+    }
+
+    .container-card h5 {
+        font-size: 20px;
+    }
+}
