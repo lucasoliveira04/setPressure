@@ -10,15 +10,19 @@ export const SheetComponent = ({ columns = [], data = [] }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((row, rowIndex) => (
-                        <tr key={rowIndex}>
-                            {Array.isArray(row)
-                                ? row.map((cell, colIndex) => (
-                                      <td key={colIndex}>{cell}</td>
-                                  ))
-                                : null }
+                    {data.length === 0 ? (
+                        <tr>
+                            <td colSpan={columns.length} style={{textAlign: "center"}}>Tabela vazia</td>
                         </tr>
-                    ))}
+                    ) : (
+                        data.map((row, rowIndex) => (
+                            <tr key={rowIndex}>
+                                {row.map((col, colIndex) => (
+                                    <td key={colIndex}>{col}</td>
+                                ))}
+                            </tr>
+                        ))
+                    )}
                 </tbody>
             </table>
         </div>

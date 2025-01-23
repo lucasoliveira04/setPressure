@@ -1,14 +1,24 @@
 import { SheetComponent } from "./sheet-component";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable"; 
+import { useEffect, useState } from "react";
+import { RulesInputs } from "../utils/rules-input";
 
-export const HomeComponent = ({ title, columns = [], data = [] }) => {
+export const HomeComponent = ({ title = title, columns = [], data = [] }) => {
+    const [newTitle, setNewTitle] = useState(title);
+
+    const handleAlert = () => {
+        var valuePrompt = prompt("Digite o novo título");
+        RulesInputs.checkInput(valuePrompt);
+        setNewTitle(valuePrompt);
+    }
+
     const downloadPDF = () => {
         if (data.length > 0) {
             const doc = new jsPDF();
             doc.setFont("Arial", "normal"); 
             doc.setFontSize(18); 
-            doc.text(title, 30, 10); 
+            doc.text(newTitle, 30, 10); 
 
             doc.autoTable({
                 head: [columns],
@@ -17,7 +27,7 @@ export const HomeComponent = ({ title, columns = [], data = [] }) => {
             });
 
             try {
-                doc.save(`${title}.pdf`); 
+                doc.save(`${newTitle}.pdf`); 
             } catch (error) {
                 console.error("Erro ao salvar o arquivo", error);
             }
@@ -29,7 +39,9 @@ export const HomeComponent = ({ title, columns = [], data = [] }) => {
     return (
         <div className="container-sheet">
             <div className="container-sheet-title">
-                <h1>{title}</h1>
+                <h1>{newTitle}</h1>
+
+                <button onClick={handleAlert} className="change-title">Mudar titulo</button>
             </div>
 
             <div className="container-sheet-content">
@@ -41,6 +53,10 @@ export const HomeComponent = ({ title, columns = [], data = [] }) => {
                     Baixar Planilha
                 </button>
             </div>
+
+            
+            
+
         </div>
     );
 };
