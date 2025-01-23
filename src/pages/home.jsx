@@ -1,5 +1,5 @@
 import { SelectProfile } from "../components/select-profile";
-import { IconHelper } from "../utils/iconeHelper";
+import { IconHelper } from "../utils/icone-helper";
 
 export const HomePage = () => {
     return (
