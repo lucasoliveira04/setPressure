@@ -16,7 +16,7 @@ export const SheetComponent = ({ columns = [], data = [] }) => {
         if (!RulesInputs.checkInput(value, "O valor não pode ser vazio")) {
             return;
         }
-        
+
         data[rowIndex][colIndex] = value; 
         setIsModalOpen(false);
     };
@@ -69,8 +69,8 @@ export const SheetComponent = ({ columns = [], data = [] }) => {
                             }
                         />
                         <div className="modal-actions">
-                            <button onClick={() => setIsModalOpen(false)}>Cancel</button>
-                            <button onClick={handleSave}>Save</button>
+                            <button onClick={() => setIsModalOpen(false)}>Cancelar</button>
+                            <button onClick={handleSave}>Salvar</button>
                         </div>
                     </div>
                 </div>

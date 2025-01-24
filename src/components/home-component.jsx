@@ -9,7 +9,10 @@ export const HomeComponent = ({ title = title, columns = [], data = [] }) => {
 
     const handleAlert = () => {
         var valuePrompt = prompt("Digite o novo título");
-        RulesInputs.checkInput(valuePrompt);
+        if (!RulesInputs.checkInput(valuePrompt)) {
+            alert("Digite um valor válido");
+            return;
+        }
         setNewTitle(valuePrompt);
     }
 
