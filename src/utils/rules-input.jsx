@@ -1,7 +1,10 @@
 export class RulesInputs{
-    static checkInput(value){
-        if (valuePrompt === null || valuePrompt === "" || valuePrompt === undefined) {
-            return;
+    static checkInput(valuePrompt, message){
+        if (valuePrompt === null || valuePrompt === "" || valuePrompt === undefined || valuePrompt === 0) {
+            alert(message)
+            return false;
         }
+
+        return true;
     }
 }
