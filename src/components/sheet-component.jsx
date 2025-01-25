@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { RulesInputs } from "../utils/rules-input";
-import PressureServices from "../services/PressureServices";
 
 export const SheetComponent = ({ columns = [], data = [] }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -63,7 +62,7 @@ export const SheetComponent = ({ columns = [], data = [] }) => {
                     <div className="modal">
                         <h3>Editar Celula</h3>
                         <input
-                            type="number"
+                            type="text"
                             value={selectedCell.value}
                             onChange={(e) =>
                                 setSelectedCell({ ...selectedCell, value: e.target.value })
