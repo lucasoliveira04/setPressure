@@ -111,9 +111,9 @@ export const SheetComponent = ({
                                         {col}
                                     </td>
                                 ))}
-                                {/* <td>
+                                <td>
                                     <button onClick={() => handleDelete(rowIndex, data, setData, pressureServices)}>Excluir</button>
-                                </td> */}
+                                </td>
                             </tr>
                         ))
                     )}
