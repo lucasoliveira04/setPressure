@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RulesInputs } from "../utils/rules-input";
+import PressureServices from "../services/PressureServices";
 
 export const SheetComponent = ({ columns = [], data = [] }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedCell, setSelectedCell] = useState({ rowIndex: null, colIndex: null, value: "" });
+    const [selectedCell, setSelectedCell] = useState({ rowIndex: null, colIndex: null, value: "" })
 
     const handleCellClick = (rowIndex, colIndex, value) => {
         setSelectedCell({ rowIndex, colIndex, value });
@@ -60,9 +61,9 @@ export const SheetComponent = ({ columns = [], data = [] }) => {
             {isModalOpen && (
                 <div className="modal-overlay">
                     <div className="modal">
-                        <h3>Edit Cell</h3>
+                        <h3>Editar Celula</h3>
                         <input
-                            type="text"
+                            type="number"
                             value={selectedCell.value}
                             onChange={(e) =>
                                 setSelectedCell({ ...selectedCell, value: e.target.value })

@@ -1,4 +1,4 @@
-import { addDoc, collection, getDocs } from "firebase/firestore"
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore"
 import { db } from "../firebase"
 
 class PressureServices{
@@ -22,6 +22,25 @@ class PressureServices{
             console.log("Document written with ID: ", docRef.id)
             return docRef.id
         } catch (error) {
+            throw error
+        }
+    }
+
+    async getPressureByIdentificador(identificador){
+        if (!identificador) {
+            throw new Error("Identificador é obrigatório")
+        }
+
+        try {
+            const q = query(this.collectionRef, where("identificador", "==", identificador))
+            const querySnapshot = await getDocs(q)
+            const data = querySnapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data()
+            }))
+            return data
+        } catch (error) {
+            console.error("Erro ao buscar dados: ", error)
             throw error
         }
     }
