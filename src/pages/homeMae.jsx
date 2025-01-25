@@ -51,9 +51,27 @@ export const HomeMae = () => {
         }
     };
 
+    const handleCedulaClick = async (rowIndex, colIndex, value) => {
+        const selectedRow = data[rowIndex];
+        const pressureId = selectedRow[3]; 
+
+        try {
+            const pressureData = await pressureService.getPressureById(pressureId);
+            console.log("Dados da pressão selecionada:", pressureData);
+        } catch (error) {
+            console.error("Erro ao buscar dados da pressão:", error);
+        }
+    };
+
     return (
         <div>
-            <HomeComponent title={title} columns={["Data", "Pressão", "Hora"]} data={data} />
+            <HomeComponent 
+                title={title} 
+                columns={["Data", "Pressão", "Hora"]} 
+                data={data}
+                onCedulaClick={handleCedulaClick} 
+                setData={setData}
+            />
             <div>
                 <PressureInput onAddPressure={handleAddPressure} />
             </div>

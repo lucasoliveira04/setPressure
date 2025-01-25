@@ -1,4 +1,4 @@
-import { addDoc, collection, getDocs, query, where } from "firebase/firestore"
+import { addDoc, collection, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore"
 import { db } from "../firebase"
 
 class PressureServices{
@@ -43,6 +43,26 @@ class PressureServices{
             console.error("Erro ao buscar dados: ", error)
             throw error
         }
+    }
+
+    async getDataFilteredByDate(identificador, horario){
+        if (!identificador || !horario) {
+            throw new Error("Identificador e horário são obrigatórios")
+        }
+
+        try {
+            const q = query(this.collectionRef, where("identificador", "==", identificador), where("horario", "==", horario))
+            const querySnapshot = await getDocs(q)
+            const data = querySnapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data()
+            }))
+            return data
+        } catch (error) {
+            console.error("Erro ao buscar dados: ", error)
+            throw error
+        }
+
     }
 
     async getAllPressureData() {

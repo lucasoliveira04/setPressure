@@ -1,13 +1,16 @@
 import { SheetComponent } from "./sheet-component";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable"; 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { RulesInputs } from "../utils/rules-input";
+import PressureServices from "../services/PressureServices"
 
-export const HomeComponent = ({ title = title, columns = [], data = [] }) => {
+export const HomeComponent = ({ title = title, columns = [], data = [], setData }) => {
     const [newTitle, setNewTitle] = useState(title);
 
-    const handleAlert = () => {
+    const pressureServices = new PressureServices()
+
+    const handleAlert = () => { 
         var valuePrompt = prompt("Digite o novo título");
         if (!RulesInputs.checkInput(valuePrompt)) {
             alert("Digite um valor válido");
@@ -39,6 +42,18 @@ export const HomeComponent = ({ title = title, columns = [], data = [] }) => {
         }
     };
 
+    // Função para lidar com o clique na cédula
+    const handleCedulaClick = (rowIndex, colIndex, value) => {
+        const selectedRow = data[rowIndex]; 
+        const horario = selectedRow[2];
+
+
+        console.log("Cédula clicada:", value); 
+        console.log("Valores da linha:", selectedRow); 
+
+        console.log(pressureServices.getDataFilteredByDate(localStorage.getItem("user"), horario))
+    };
+
     return (
         <div className="container-sheet">
             <div className="container-sheet-title">
@@ -48,7 +63,13 @@ export const HomeComponent = ({ title = title, columns = [], data = [] }) => {
             </div>
 
             <div className="container-sheet-content">
-                <SheetComponent columns={columns} data={data} />
+                <SheetComponent 
+                    columns={columns} 
+                    data={data} 
+                    onCedulaClick={handleCedulaClick} 
+                    pressureServices={pressureServices}
+                    setData={setData}
+                />
             </div>
 
             <div className="container-sheet-download-button">
@@ -56,10 +77,6 @@ export const HomeComponent = ({ title = title, columns = [], data = [] }) => {
                     Baixar Planilha
                 </button>
             </div>
-
-            
-            
-
         </div>
     );
 };
