@@ -16,7 +16,7 @@ export const PressureInput = ({ onAddPressure }) => {
             <label>
                 Pressão:
                 <input
-                    type="number"
+                    type="text"
                     value={pressure}
                     onChange={(e) => setPressure(e.target.value)}
                     placeholder="Digite a pressão"
