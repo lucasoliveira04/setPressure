@@ -1,20 +1,21 @@
+import { useEffect } from "react";
 import { SelectProfile } from "../components/select-profile";
 import { IconHelper } from "../utils/icone-helper";
 
 export const HomePage = () => {
+
+    useEffect(() => {
+        if (localStorage.getItem("token") !== null){
+            window.location.href = "/pressao";
+        }
+    })
+
     return (
         <div className="container-home">
             <SelectProfile
-                title="Mãe"
+                title="Acessar Planilha"
                 icon={IconHelper.getRandomIcon()}
-                color="rgb(255, 99, 132)" 
-                link={"/mae"}
-            />
-            <SelectProfile
-                title="Pai"
-                icon={IconHelper.getRandomIcon()}
-                color="rgb(54, 162, 235)" 
-                link={"/pai"}
+                link={"/pressao"}
             />
         </div>
     );

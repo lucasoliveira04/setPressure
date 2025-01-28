@@ -9,6 +9,7 @@
     align-items: center;
     height: 100vh;
     gap: 20px;
+    text-align: center;
     background-color: rgb(235, 235, 235);
     flex-wrap: wrap;
 }
@@ -44,4 +45,9 @@
 
 .icon-container svg {
     color: white;
+}
+
+.header-btn-logout{
+    display: flex;
+    justify-content: flex-end;
 }

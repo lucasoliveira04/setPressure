@@ -3,13 +3,13 @@ import { HomeComponent } from "../components/home-component";
 import { PressureInput } from "../components/pressure-input";
 import PressureServices from "../services/PressureServices";
 
-export const HomeMae = () => {
+export const HomePressao = () => {
     const [data, setData] = useState([]);
     const pressureService = new PressureServices();
 
     const userEmail = localStorage.getItem("user");
     const displayName = localStorage.getItem("title");
-
+    
     const formattedDisplayName = (displayName) => {
         return displayName.replace(/['"]+/g, "");
     };
@@ -63,8 +63,18 @@ export const HomeMae = () => {
         }
     };
 
+    const logout = () => {
+        localStorage.removeItem("user");
+        localStorage.removeItem("title");
+        localStorage.removeItem("token");
+        window.location.href = "/";
+    }
+
     return (
         <div>
+            <div className="header-btn-logout">
+                <button style={{backgroundColor: "red"}} onClick={logout}>Sair</button>
+            </div>
             <HomeComponent 
                 title={title} 
                 columns={["Data", "Pressão", "Hora"]} 
@@ -72,6 +82,8 @@ export const HomeMae = () => {
                 onCedulaClick={handleCedulaClick} 
                 setData={setData}
             />
+
+            
             <div>
                 <PressureInput onAddPressure={handleAddPressure} />
             </div>

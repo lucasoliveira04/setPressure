@@ -3,8 +3,7 @@ import { HomePage } from "../pages/home"
 import "../App.css"
 import "../responsive.css"
 import "../sheetComponent.css"
-import { HomeMae } from "../pages/homeMae"
-import { HomePai } from "../pages/homePai"
+import { HomePressao } from "../pages/homePressao"
 
 export const AppRouter = () => {
     return (
@@ -12,8 +11,7 @@ export const AppRouter = () => {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
-                    <Route path="/mae" element={<HomeMae />} />
-                    <Route path="/pai" element={<HomePai/>}/>
+                    <Route path="/pressao" element={<HomePressao />} />
                 </Routes>
             </BrowserRouter>
         </>
