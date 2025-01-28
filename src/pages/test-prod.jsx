@@ -42,27 +42,17 @@ export const TestProd = ({ emailSend }) => {
         }
     };
 
-    const scheduleEmailAt = (hour, minute) => {
-        const now = new Date();
-        const targetTime = new Date(now);
-        targetTime.setHours(hour, minute, 0, 0);
-
-        if (targetTime <= now) {
-            targetTime.setDate(now.getDate() + 1);
-        }
-
-        const delay = targetTime - now;
+    const scheduleEmailAt = () => {
 
         setTimeout(() => {
             sendEmail();
-            scheduleEmailAt(hour, minute); 
-        }, delay);
+            console.log('Email enviado');
+        }, 1000);
     };
 
     useEffect(() => {
-        scheduleEmailAt(10, 0); 
-        scheduleEmailAt(22, 0); 
-    }, []);
+        scheduleEmailAt(); 
+    }, [response]);
 
     return null;
 };
