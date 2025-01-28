@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { HomeComponent } from "../components/home-component";
 import { PressureInput } from "../components/pressure-input";
 import PressureServices from "../services/PressureServices";
+import { TestProd } from "./test-prod";
 
 export const HomePressao = () => {
     const [data, setData] = useState([]);
@@ -82,11 +83,12 @@ export const HomePressao = () => {
                 onCedulaClick={handleCedulaClick} 
                 setData={setData}
             />
-
             
             <div>
                 <PressureInput onAddPressure={handleAddPressure} />
             </div>
+
+            <TestProd emailSend={userEmail}/>
         </div>
     );
 };
